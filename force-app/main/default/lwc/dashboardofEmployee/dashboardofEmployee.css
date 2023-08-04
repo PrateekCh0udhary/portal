@@ -1,0 +1,318 @@
+body {
+    background-size: cover;
+    background-image: url("/resource/loginBackground");
+    font-family: initial;
+    /*choose image from static resource*/
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topDiv {
+    display: flex;
+}
+
+.mainCardDiv {
+    width: 100%;
+}
+
+.innerh2 {
+    text-align: center;
+    margin-top: 7%;
+    /* left: 36%; */
+    font-size: 53px;
+    font-weight: 700;
+}
+
+.innerh2h2 {
+    position: absolute;
+    top: 33%;
+    left: 23%;
+    font-size: 53px;
+    font-weight: 700;
+}
+
+.innerp {
+    text-align: center;
+    top: 66%;
+    left: 39%;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.innerp2 {
+    text-align: center;
+    margin-top: 61%;
+}
+
+.innerp23 {
+    text-align: center;
+    margin-top: 13%;
+}
+
+.outerDiv {
+    width: 115%;
+    background: white;
+    border: none;
+    height: 200px;
+    border-radius: 25px;
+}
+
+.secondDiv {
+    width: 80%;
+}
+
+.home_page_top_div {
+    background: white;
+    margin-top: 1%;
+}
+
+.home_page_today_div  {
+    background: lightgray;
+}
+
+.home_page_second_div {
+    display: flex;
+}
+
+.home_page_h1_tage {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.home_page_p_tage {
+    margin: -6px 7px;
+    letter-spacing: 1px;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.button_one,
+.button_two {
+    background-color: #213E3B;
+    color: white;
+    border: none;
+    width: 140px;
+    height: 40px;
+    border-radius: 31px;
+    font-size: 17px;
+}
+
+.shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 6px;
+}
+
+.button_two {
+    background-color: #A6F6F1;
+    margin-left: 20px;
+    color: #213E3B;
+}
+
+.login-button {
+    background-color: #e7f1fc;
+    color: #0000ff(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding: 0.5rem;
+    font-size: 16px;
+    font-family: Arial;
+}
+
+.main-heading {
+    font-size: 20px;
+    color: #0000ff(255, 255, 255);
+}
+
+.sub-heading {
+    font-size: 14px;
+    color: #0000ff(255, 255, 255);
+}
+
+.input-icon {
+    position: absolute;
+    margin: 0.9rem 0.7rem;
+}
+
+.input-element {
+    padding: 0.5rem 0rem 0.5rem 2rem;
+    font-size: 16px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.forgot-password-text {
+    color: #CCBFBF;
+    font-size: 14px;
+    text-align: left;
+}
+
+.register-text {
+    color: #CCBFBF;
+    font-size: 14px;
+    float: right;
+}
+
+.error {
+    text-align: center;
+    word-break: break-word;
+    max-width: 20rem;
+    color: #ff9e9e;
+}
+
+.img-Class {
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    top: 0;
+}
+
+.div {
+    height: 75px;
+}
+
+.img-Class2 {
+    width: 300px;
+}
+
+.header-class {
+    background: papayawhip;
+    height: 75px;
+    top: 0;
+    position: relative;
+    width: auto;
+    overflow-anchor: none;
+    z-index: 0;
+}
+
+.textAreaClass {
+    --sds-c-textarea-sizing-min-height: 40vh;
+}
+
+.bold-text {
+    font-size: large;
+}
+
+.box_size {
+    margin-right: -33%;
+    margin-left: 0%;
+}
+
+.Adjustment {
+    display: flex;
+    background: bisque;
+}
+
+.Dateclass {
+    text-align: center;
+    font-weight: bold;
+}
+
+.pageclass {
+    margin: 0 auto 0 auto;
+}
+
+.colourchange {
+    background: aliceblue;
+}
+
+.height-class {
+    /* height: 45vh; */
+    margin-top: 17%;
+}
+
+.heading {
+    font-weight: bold;
+    font-size: larger;
+    color: aliceblue;
+}
+
+.border {
+    border-width: 1ch;
+}
+
+.bg {
+    background-image: url("https://pixabay.com/illustrations/blue-background-technological-linear-4863452/");
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.BackColor {
+    background: rgb(127, 177, 227);
+    background: radial-gradient(circle, rgba(127, 177, 227, 1) 0%, rgba(39, 100, 172, 1) 31%, rgba(24, 86, 162, 1) 39%, rgba(24, 86, 162, 1) 56%, rgba(24, 86, 162, 1) 56%, rgba(2, 42, 91, 1) 87%);
+}
+
+.Employdes {
+    margin-top: 7%;
+    font-size: 349%;
+    font-weight: 700;
+}
+
+.ExperienceEmp {
+    margin-top: 8%;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.innerH1 {
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {}
+
+@media only screen and (min-width: 600px) {}
+
+@media only screen and (min-width: 768px) {}
+
+@media only screen and (width: 820px) {
+    .topDiv {
+        margin-bottom: 21%;
+    }
+    .innerh2h2 {
+        position: absolute;
+        top: 36%;
+        left: 22%;
+        font-size: 384%;
+        font-weight: 700;
+    }
+    .Employdes {
+        font-size: 30px;
+    }
+    .outerDiv {
+        width: 115%;
+        background: white;
+        border: none;
+        height: 225px;
+        border-radius: 25px;
+    }
+}
+
+@media only screen and (min-width: 992px) {}
+
+@media only screen and (min-width: 1200px) {}
+
+.headerStyle {
+    font-weight: bold;
+    font-size: larger;
+    font-family: initial;
+    border-radius: 10px;
+}
+.birthdayCard{
+    background: #e7f1fc;
+    color: #032d60;
+    font-family: cursive;
+    font-weight: 600;
+}
+.birthdayInnerdiv{
+    color: white;
+    font-style: italic;
+    background-color: #0000ff;
+}

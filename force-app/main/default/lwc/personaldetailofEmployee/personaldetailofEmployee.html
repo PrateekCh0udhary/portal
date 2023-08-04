@@ -1,0 +1,307 @@
+<template>
+    <div>
+        <div class="home_page_top_div shadow">
+            <div class="marginclasss">
+                <lightning-layout class="backgroundColoroflayout">
+                    <lightning-layout-item size="12">
+                        <div class="custom-box slds-align--absolute-center  font">Personal Detail</div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </div>
+        <template if:false={loading}>
+            <div class="marginclasss">
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Name</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {empName}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Employee Code</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {Employeecode}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout  class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Date Of Birth</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {EmplDOb}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Date Of Joining</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {DOJ}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Head Of Department</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {hod}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Reporting Manager</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {rm}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Role</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {role}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Email</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {email}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Team Leader</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {Tl}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Availability</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {availability}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Team</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {team}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Experience</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {experience}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Post-Graduation Passing Year </label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {postgrad}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Communication Level</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {comm}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Extended Experience</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {Extendexperience}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Graduation Passing Year</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {gradutaion}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Actual Experience</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {actualExperience}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Company Name</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {Company}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Employee Database Id</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    {IdOFEmployee}
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    &nbsp;            
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">Resume Link</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    <a href={resume} target="_blank">{resume}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>   
+                </lightning-layout>
+                <lightning-layout class="fieldsMargin">
+                    <lightning-layout-item class="backgroundColoroflayout" size="6">
+                        <div class="custom-box slds-box " style="border: none;">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <label class="labelsFont">LinkedIn</label>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-accordion__summary-content">
+                                    <a href={} target="_blank"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>
+        <template if:true={loading}>
+            <div>
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+        </template>
+    </div>
+    <!-- <div style="color: #022a5b;">.</div> -->
+</template>

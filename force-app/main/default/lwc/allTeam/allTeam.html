@@ -1,0 +1,132 @@
+<template>
+    <!-- <div style="display: flex;">
+        <select class="slds-select" name = "optionSelect" onchange={changeHandler} style="width: 80px;">
+            <option value="1">1 Month</option>
+            <option value="3">3 Month</option>
+            <option value="6">6 Month</option>
+        </select> 
+    </div> -->
+    <template if:true={showBillableHours}>
+        <div class="slds-p-around_medium lgc-bg slds-dropdown-trigger_hover" style="display: flex;">
+            <lightning-button-menu alternative-text="Show menu" name = "optionSelect" onchange={changeHandler} style="width: 80px;">
+                <lightning-menu-item value="1" label="1 Month Billable Hours"></lightning-menu-item>
+                <lightning-menu-item value="3" label="3 Month Billable Hours"></lightning-menu-item>
+                <lightning-menu-item value="6" label="6 Month Billable Hours"></lightning-menu-item>
+            </lightning-button-menu>
+        </div>
+    </template>
+
+    <div class="slds-scrollable_y" style="height:100%;width:100%;margin-top: 10px;padding:0;top: 0;z-index: 101;position: -webkit-sticky; overflow: visible;">
+        <template if:true={HODData}>
+            <div class="RMDiv" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; margin-top: auto;">
+                <div>
+                    <h1 style="text-align: center; font-weight:bold;" class="slds-m-top_x-large">{HODData.Name}<span style="padding:2px;border:1px solid white;border-radius:100%;margin:1.5px;background-color:red;color:white;"><b>{HodTeamCountAll}</b></span></h1>
+                    <div>
+                        <div class="FooterDiv"><p>Noida</p></div>
+                        <div class="FooterDiv"><p>Professional Services</p></div>
+                        <div class="FooterDiv"><p>{HODData.Role__c}</p></div>
+                        <template if:true={showBillableHours}>
+                            <div class="FooterDiv"><span style="padding:2px;border:1px solid white;margin:1.5px;background-color:#f56666;color:white;"><b>{HODData.Tech_BillableHours__c}</b></span></div> 
+                        </template>
+                    </div>
+                    <div class="FooterDiv slds-m-top_large" style="background-color: antiquewhite;padding:10px; border-radius:10px;"><p>Cloud Analogy</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <lightning-layout multiple-rows="true">
+                    <template for:each={RMTeamInformation} for:item="RM">
+                        <lightning-layout-item size="3" small-device-size="3" medium-device-size="3" large-device-size="3" key={RM.id}>
+                            <div class="RMDiv" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;position:relative; margin-top: auto;" >
+                                <div>
+                                    <h1 style="text-align: center; font-weight:bold;" class="slds-m-top_x-large">{RM.Name}<span style="padding:2px;border:1px solid white;border-radius:100%;margin:1.5px;background-color:red;color:white;"><b>{RM.Tech_TeamCountforRM__c}</b></span></h1>
+                                    <div>
+                                        <div class="FooterDiv"><p>Noida</p></div>
+                                        <div class="FooterDiv"><p>Professional Services</p></div>
+                                        <div class="FooterDiv"><p>{RM.Role__c}</p></div>
+                                        <template if:true={showBillableHours}>
+                                            <div class="FooterDiv"><span style="padding:2px;border:1px solid white;margin:1.5px;background-color:#f56666;color:white;"><b>{RM.Tech_BillableHours__c}</b></span></div> 
+                                        </template>
+                                    </div>
+                                    <div class="FooterDiv slds-m-top_large" style="background-color: antiquewhite;border-radius:10px;padding:10px; position:absolute;bottom:0px;width:100%;"><p>Cloud Analogy</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+            <div>
+                <lightning-layout multiple-rows="true">
+                    <template for:each={EmployeeInformation} for:item="TeamData">      
+                        <lightning-layout-item size="3" small-device-size="3" medium-device-size="3" large-device-size="3" key={TeamData.id}>
+                            <div class="RMDiv" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;position:relative;margin-top: auto;" >
+                                <div>
+                                    <h1 style="text-align: center; font-weight:bold;" class="slds-m-top_x-large">{TeamData.Name}</h1>
+                                     <div>
+                                        <div class="FooterDiv"><p>Noida</p></div>
+                                        <div class="FooterDiv"><p>Professional Services</p></div>
+                                        <div class="FooterDiv"><p>{TeamData.Role__c}</p></div>
+                                        <div class="FooterDiv"><p>{TeamData.Reporting_Manager__r.Name}</p></div>
+                                        <template if:true={showBillableHours}>
+                                            <div class="FooterDiv"><span style="padding:2px;border:1px solid white;margin:1.5px;background-color:#f56666;color:white;"><b>{TeamData.Tech_BillableHours__c}</b></span></div>
+                                        </template>
+                                    </div>
+                                    <div class="FooterDiv slds-m-top_large" style="background-color: antiquewhite;padding:10px; border-radius:10px;position:absolute;bottom:0px;width:100%;"><p>Cloud Analogy</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>   
+                </lightning-layout>
+            </div>
+        </template>
+        <template if:false={HODData}>
+            <template for:each={RMData} for:item="RM">
+                <div class="RMDiv" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;position:relative;margin-top: auto;" key={RM.Id}>
+                    <div>
+                        <h1 style="text-align: center; font-weight:bold;" class="slds-m-top_x-large">{RM.Name}<span style="padding:2px;border:1px solid white;border-radius:100%;margin:1.5px;background-color:red;color:white;"><b>{RM.Tech_TeamCountforRM__c}</b></span></h1>
+                        <div>
+                            <div class="FooterDiv"><p>Noida</p></div>
+                            <div class="FooterDiv"><p>Professional Services</p></div>
+                            <div class="FooterDiv"><p>{RM.Role__c}</p></div>
+                            <template if:true={showBillableHours}>
+                            <div class="FooterDiv"><span style="padding:2px;border:1px solid white;margin:1.5px;background-color:#f56666;color:white;"><b>{RM.Tech_BillableHours__c}</b></span></div> 
+                            </template>
+                        </div>
+                        <div class="FooterDiv slds-m-top_large" style="background-color: antiquewhite;border-radius:10px;padding:10px; position:absolute;bottom:0px;width:100%;"><p>Cloud Analogy</p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <div>
+                <lightning-layout multiple-rows="true">
+                    <template for:each={allTeamData} for:item="TeamData">
+                        <lightning-layout-item size="3" small-device-size="3" medium-device-size="3" large-device-size="3" key={TeamData.id} >
+                            <div class="RMDiv" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; position:relative;margin-top: auto;" >
+                                <div>
+                                    <h1 style="text-align: center; font-weight:bold;" class="slds-m-top_x-large">{TeamData.Name}</h1>
+                                    <div>
+                                        <div class="FooterDiv"><p>Noida</p></div>
+                                        <div class="FooterDiv"><p>Professional Services</p></div>
+                                        <div class="FooterDiv"><p>{TeamData.Role__c}</p></div>
+                                        <template if:true={showBillableHours}>
+                                            <div class="FooterDiv"><span style="padding:2px;border:1px solid white;margin:1.5px;background-color:#f56666;color:white;"><b>{TeamData.Tech_BillableHours__c}</b></span></div>
+                                        </template>
+                                    </div>
+                                    <div class="FooterDiv slds-m-top_large" style="background-color: antiquewhite;padding:10px; border-radius:10px;position:absolute;bottom:0px;width:100%;"><p>Cloud Analogy</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>   
+                </lightning-layout>
+            </div>
+        </template>
+        <template if:true={loading}>
+            <div class = "spinner">
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+        </template>   
+    </div>        
+</template>

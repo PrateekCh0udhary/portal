@@ -1,0 +1,47 @@
+.cardMainDiv{
+    height: 20vh;
+    overflow-y: scroll;
+
+}
+.flex-container {
+   display: flex;
+ 
+}
+.date {
+   width: 10%;
+   text-align: center;
+}
+.b-hour {
+   width: 10%;
+   text-align: center;
+}
+.a-hour{
+    width: 10%;
+   text-align: center;
+}
+.avail {
+   width: 10%;
+   text-align: center;
+}
+.tasklist{
+    width: 35%;
+    text-align: center;
+    border: none;
+}
+.heightpolicy {
+   height: 75vh;
+}
+.margin-top{
+    margin-top: 38px;
+}
+.dropdownclass{
+   max-width: 98%;
+}
+.Contentcardfortask{
+   max-height: 23vh;
+}
+.THIS::-webkit-clear-button {
+
+   display: none; 
+   -webkit-appearance: none; 
+}

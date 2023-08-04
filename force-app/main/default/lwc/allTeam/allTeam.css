@@ -1,0 +1,35 @@
+.RMDiv{
+    max-width: 220px;
+    margin: 30px auto;
+    min-height: 200px;
+    position: relative;
+    background-color: #fff;
+    border-radius:10px;
+  border: 1px solid #ccc;
+    
+    
+}
+.RMDiv:hover{
+    max-width: 225px;
+  
+    box-shadow: 0 0 11px rgba(7, 6, 6, 0.2); ;
+}
+
+.image{
+    height: 120px;
+
+}
+.dots{
+    width: 4px;
+    height: 4px;
+    background-color: #7b8994;
+    margin: 6px 0;
+    
+}
+.FooterDiv{
+    text-align: center;
+    font-size: 14px;
+    color: #7b8994;
+    word-break: break-word;
+    display: block;
+}

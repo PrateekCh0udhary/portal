@@ -1,0 +1,239 @@
+body {
+    background-size: cover;
+    background-image: url("/resource/loginBackground");
+    /*choose image from static resource*/
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-button {
+    background-color: #0263a9;
+    border-radius: 30px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    padding: 0.5rem;
+    font-size: 17px;
+    font-family: Arial;
+}
+
+
+/* .login-button:hover {
+    background-color: #d4e5f5;
+} */
+
+.main-heading {
+    font-size: 192%;
+    margin-left: 10%;
+    color: #0000ff(255, 255, 255);
+}
+
+.sub-heading {
+    font-size: 144%;
+    margin-left: 27%;
+    color: #0000ff(255, 255, 255);
+}
+
+.input-icon {
+    position: absolute;
+    margin: 0.9rem 0.7rem;
+}
+
+.input-element {
+    padding: 0.5rem 0rem 0.5rem 2rem;
+    font-size: 16px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.forgot-password-text {
+    color: #CCBFBF;
+    font-size: 14px;
+    text-align: left;
+}
+
+.register-text {
+    color: #CCBFBF;
+    font-size: 14px;
+    float: right;
+}
+
+.error {
+    text-align: center;
+    word-break: break-word;
+    max-width: 20rem;
+    color: #ff9e9e;
+}
+
+.img-Class {
+    height: 100%;
+    width: auto;
+    /* position: absolute;
+    width: 150px;
+    height: 100px;
+    top: 0; */
+}
+
+.div {
+    height: 100%;
+}
+
+.img-Class2 {
+    width: 300px;
+}
+
+.header-class {
+    background: rgb(127, 177, 227);
+    background: radial-gradient(circle, rgba(127, 177, 227, 1) 0%, rgba(39, 100, 172, 1) 31%, rgba(24, 86, 162, 1) 39%, rgba(24, 86, 162, 1) 56%, rgba(24, 86, 162, 1) 56%, rgba(2, 42, 91, 1) 87%);
+    height: 75px;
+    top: 0;
+    position: relative;
+    width: auto;
+    overflow-anchor: none;
+    z-index: 0;
+}
+
+.textAreaClass {
+    --sds-c-textarea-sizing-min-height: 225px;
+}
+
+.bold-text {
+    font-size: large;
+}
+
+.box_size {
+    width: 60%;
+    margin-right: -100px;
+}
+
+.popover {
+    position: absolute;
+    right: 11px;
+    top: 17%;
+}
+
+
+/* .shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 6px;
+} */
+
+.at-item {
+    animation-name: rotate-center;
+    animation-duration: 2.2s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    cursor: pointer;
+    background: rgb(127, 177, 227);
+    background: radial-gradient(circle, rgba(127, 177, 227, 1) 0%, rgba(39, 100, 172, 1) 31%, rgba(24, 86, 162, 1) 39%, rgba(24, 86, 162, 1) 56%, rgba(24, 86, 162, 1) 56%, rgba(2, 42, 91, 1) 87%);
+}
+
+.inconSecondClass {
+    background: rgb(127, 177, 227);
+    background: radial-gradient(circle, rgba(127, 177, 227, 1) 0%, rgba(39, 100, 172, 1) 31%, rgba(24, 86, 162, 1) 39%, rgba(24, 86, 162, 1) 56%, rgba(24, 86, 162, 1) 56%, rgba(2, 42, 91, 1) 87%);
+}
+
+@keyframes rotate-center {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: rgb(127, 177, 227);
+    background: radial-gradient(circle, rgba(127, 177, 227, 1) 0%, rgba(39, 100, 172, 1) 31%, rgba(24, 86, 162, 1) 39%, rgba(24, 86, 162, 1) 56%, rgba(24, 86, 162, 1) 56%, rgba(2, 42, 91, 1) 87%);
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.iconBackgrounddiv {
+    display: inline-block;
+    background: #0263a9;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+lightning-vertical-navigation-item-icon a {
+    color: white !important;
+}
+
+.Adjustment {
+    display: flex;
+    background: white;
+}
+
+.Datecalsss {
+    text-align: center;
+    font-weight: bold;
+}
+
+.pageclass {
+    margin: 0 auto 0 auto;
+}
+
+.colourchange {
+    background: #e7f1fc;
+    width: 20%;
+}
+
+.BackColor {
+    background: rgb(127, 177, 227);
+    background: radial-gradient(circle, rgba(127, 177, 227, 1) 0%, rgba(39, 100, 172, 1) 31%, rgba(24, 86, 162, 1) 39%, rgba(24, 86, 162, 1) 56%, rgba(24, 86, 162, 1) 56%, rgba(2, 42, 91, 1) 87%);
+    width: 80%;
+}
+
+@media only screen and (width: 820px) {
+    .slds-scope .slds-nav-vertical {
+        position: relative;
+        margin-left: -33px;
+        width: 166px;
+    }
+}
+
+.loginDiv {
+    /* height: 70vh; */
+    overflow: hidden;
+    margin-top: 30%;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.socialFooter {
+    margin: 20px;
+    font-size: medium;
+}

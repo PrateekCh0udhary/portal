@@ -1,0 +1,3 @@
+<aura:component>
+    <c:loginPage_for_Employee />
+</aura:component>

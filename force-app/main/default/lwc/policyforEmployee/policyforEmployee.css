@@ -1,0 +1,29 @@
+.cardMainDiv{
+    height: 20vh;
+    overflow-y: scroll;
+}
+.flex-container {
+   display: flex;
+   
+ 
+}
+.flex-container > div {
+   font-size: 13px;
+   
+   
+ }
+.name{
+   width: 25%;
+   
+  
+}
+.description{
+   width: 25%;
+   text-align: justify;
+}
+.employee{
+   width: 25%;
+}
+.heightpolicy {
+   height: 80vh;
+}

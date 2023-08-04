@@ -1,0 +1,22 @@
+<apex:page standardStylesheets="true" showHeader="false">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <apex:includeLightning />
+    
+    <div id="LightningAppDivId">
+        <!-- Lightning Web Component will be included here. -->
+    </div>
+    
+    <script>
+    $Lightning.use(
+        "c:EmployeeLoginPage", // Name of Aura Dependency app where c is namespace.
+        function() { // Callback function
+            $Lightning.createComponent(
+                "c:loginPage_for_Employee", // Name of Lightning Component where c is namespace.
+                {}, // attribute parameters
+                "LightningAppDivId" // Id of the element where Lightning Component will be rendered.
+            );
+        }
+    );
+    </script>
+    
+</apex:page>

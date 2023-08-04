@@ -1,0 +1,25 @@
+.marginclasss {
+    margin-top: 1%;
+}
+
+.backgroundColoroflayout {
+    background: white;
+    border-radius: 10px;
+}
+
+.font {
+    font-size: 35px;
+    font-weight: 600;
+    padding: 10px;
+    font-family: ui-monospace;
+}
+
+.labelsFont {
+    font-weight: bold;
+    font-size: larger;
+    font-family: -webkit-body;
+}
+
+.fieldsMargin {
+    margin: 2px;
+}

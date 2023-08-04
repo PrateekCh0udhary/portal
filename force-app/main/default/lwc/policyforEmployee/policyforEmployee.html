@@ -1,0 +1,119 @@
+<template >
+   <template if:true={showAlert}>
+        <div class="slds-notify slds-notify_alert" role="alert">
+            <span class="slds-assistive-text">info</span>
+            <span class="slds-icon_container slds-icon-utility-user slds-m-right_x-small" title="Description of icon when needed">
+            </span>
+                <h2>Logged in as {policyData.Name}
+                    <!-- <a href="#">Log out</a> -->
+                </h2>
+            <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={customHideModalPopup}>
+                    <lightning-icon icon-name="utility:close"
+                    alternative-text="close"
+                    variant="inverse"
+                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+        </div>
+    </template>
+    <lightning-card title="Policy Data" icon-name="standard:propagation_policy" class="text-align: center;" style="background-color: rgba(170, 167, 167, 0.2) ;">
+        <template if:true={isNewButton}>
+            <div class="slds-clearfix">
+                <div class="slds-float_right">
+                    <lightning-button label="New" onclick={openModal} class="slds-m-right_x-small"></lightning-button>
+                </div>
+            </div>
+        </template>
+        <article class="slds-card" style="background-color: #b0c4df; overflow:hidden; margin-top: 5px ">
+            <div class="flex-container slds-text-title_bold" style="background-color: white; text-align: center;">
+                <div class="name  slds-m-right_xx-large" style="margin-right:8% ;">Policy Name</div>
+                <div class="slds-align--absolute-center description">Description</div>
+                <div class="employee slds-m-left_xx-large slds-m-right_xx-large">Apply To</div>
+                <div class="employee slds-m-right_xx-large">Created By</div>
+            </div>
+            <div style="margin:4px;"></div>
+            <div class="cardMainDiv heightpolicy">
+                <template for:each={policyData} for:item="poly">
+                    <div key={poly.id}>
+                        <div class="flex-container slds-box  slds-m-bottom--xx-small" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; background-color:white;" >
+                            <div><lightning-icon icon-name="doctype:gdoc" alternative-text="Image file" title="Image" class="slds-p-right_medium" size="xx-small"></lightning-icon></div>
+                            <div class="name" style="font-size: 15px;">{poly.Name}</div>
+                            <div class="description "><textarea style="height: 15vh; border: none;width: 15rem;" disabled>{poly.Description__c}</textarea></div>
+                            <div class="employee" style="text-align: center; font-size: 15px;">{poly.Apply_to_under_Team_of__r.Name}</div>
+                            <div class="employee" style="text-align: center; font-size: 15px;">{poly.Policy_Created_By__r.Name}</div>
+                            <template if:true={isNewButton}>  
+                            <div >
+                                <lightning-button-icon value={poly.Id} icon-name="utility:delete" variant="brand" alternative-text="Delete" class="slds-m-left_xx-small" title="Delete" size="x-small" onclick={handleConfirm}></lightning-button-icon>
+                            </div>
+                            </template>
+                        </div>   
+                    </div>
+                </template>
+            </div>
+        </article>
+    </lightning-card>
+    <div>
+        <template if:true={isOpen}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- modal header start -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={customHideModalPopup}>
+                            <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">New Policy</h2>
+                    </header>
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-layout multiple-rows="true">
+                            <lightning-layout-item size="6" style="display: flex;">
+                                <lightning-input class="slds-p-around_medium" label="Name" required="true" name="PolicyName" value={PolicyName}
+                                    onchange={nameChangedHandler}></lightning-input>
+                            </lightning-layout-item>
+                            <template if:true={isCurrentEmployee}>
+                                <lightning-layout-item class="slds-m-top_medium" size="6">
+                                    <lightning-dual-listbox name="Employee" label="Employee" source-label="Available" selected-label="Selected" value={pickVal} 
+                                    options={options} onchange={changeEmployeeValue} ></lightning-dual-listbox>
+                                </lightning-layout-item>
+                                <!-- <lightning-layout-item class="slds-m-top_medium" size="6">
+                                    <lightning-combobox class="slds-m-right--small multi-select-combobox__input" name="Employee" label="Employee" value={value} multi-select="true" placeholder="Select Employee" 
+                                        options={options} onchange={changeEmployeeValue} ></lightning-combobox>
+                                </lightning-layout-item> -->
+                            </template>
+                            <template if:false={isCurrentEmployee}>
+                                <lightning-layout-item class="slds-m-top_medium" size="6">
+                                    <lightning-input class="slds-m-right--small" label="Employee" readonly="true" type="text" name="employeeLookup" value={currentEmployee.Name}>
+                                    </lightning-input>
+                                </lightning-layout-item>
+                            </template>
+                            <lightning-layout-item size="12">
+                                <lightning-input class="slds-p-around_medium" type="Text" label="Description" required="true" name="Description" value={Description}
+                                    onchange={descriptionChangeHandler}></lightning-input> 
+                            </lightning-layout-item> 
+                        </lightning-layout>
+                        <footer class="slds-modal__footer">
+                            <div class="slds-align_absolute-center">
+                                <lightning-button class="slds-m-left_x-small" label="Save" variant="brand" 
+                                    onclick={createPolicy}></lightning-button>
+                                <lightning-button class="slds-m-left_x-small" label="Cancel" onclick={customHideModalPopup}></lightning-button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open">
+            </div>
+        </template>
+        <template if:true={loading}>
+            <div class = "spinner" >
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </div>
+        </template>
+    </div>
+</template>

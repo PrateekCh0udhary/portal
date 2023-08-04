@@ -1,0 +1,21 @@
+<template>
+    <template if:true={loading}>
+        <lightning-spinner variant="brand" size="medium" alternative-text="Loading"></lightning-spinner>
+    </template>
+        <lightning-layout>
+            <lightning-layout-item size="12" large-device-size="12" medium-device-size="8" small-device-size="4">
+                <lightning-card title="Project Status" icon-name="standard:file">
+                    <div class="slds-p-horizontal_small slds-scrollable_y">
+                        <lightning-datatable
+                            key-field="id"
+                            data={data}
+                            show-row-number-column
+                            suppress-bottom-bar
+                            hide-checkbox-column="true"
+                            columns={columns}>
+                        </lightning-datatable>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>    
+</template>

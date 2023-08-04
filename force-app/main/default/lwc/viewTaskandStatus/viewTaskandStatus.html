@@ -1,0 +1,286 @@
+<template>
+    <template if:false={loading}>
+        <lightning-card>
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="5" padding="around-small">
+                        <div class="slds-text-align_center">
+                            <lightning-card title="Tasks And Status Of Employee" icon-name="action:update_status" class="text-align: center;"> </lightning-card>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" padding="around-small"></lightning-layout-item>
+                    <lightning-layout-item size="2" padding="around-small">
+                        <div class="">
+                            <legend class="slds-form-element__legend slds-form-element__label">Start Date</legend>
+                            <lightning-input type="date" class="validateStartDate" value={startdt} onchange={StartdateTask} ></lightning-input>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2" padding="around-small">
+                        <div class="">
+                            <legend class="slds-form-element__legend slds-form-element__label">End Date</legend>
+                            <lightning-input type="date" class="validateEnddate" value={Enddt} onchange={EndDateofTask} ></lightning-input>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item class="margin-top">
+                        <lightning-button label="Search" onclick={Filtertask}></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+            <template if:true={showTaskListofEmp}>
+                <template if:false={loadingcardforEmp}>
+                    <template if:true={TaskofEmployee}>
+                        <article class="slds-card" style="background-color: #b0c4df;">
+                            
+                            <div class="flex-container slds-text-title_bold" style="background-color: white; text-align: center;">
+                                <div class="date slds-p-left_small">Date</div>
+                                <div class="b-hour">Billing Hours</div>
+                                <div class="a-hour">Actual Hours</div>
+                                <div class="avail">Availability</div>
+                                <div class="tasklist">Task List</div>
+                                <div class="tasklist">Status Update</div>
+                            </div>
+                            <div style="margin: 3px; background: white"></div>
+                            <div class="cardMainDiv heightpolicy">
+                                <template for:each={data} for:item="dt">
+                                    <div key={dt.id}>
+                                        <div class="flex-container slds-box  slds-m-bottom--xx-small" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; background-color:white;" >
+                                            <div class="slds-align--absolute-center date">{dt.Date__c}</div>
+                                            <div class="slds-align--absolute-center b-hour">{dt.Billable_Hours__c}</div>
+                                            <div class="slds-align--absolute-center a-hour">{dt.Actual_Hours__c}</div>
+                                            <div class="slds-align--absolute-center avail">{dt.Availability__c}%</div>
+                                            <div class="tasklist">
+                                                <!-- <lightning-textarea style="overflow:auto;" value={dt.Task_List__c} disabled></lightning-textarea> -->
+                                                <div class="slds-text-align_left" style="height: 25vh;overflow: auto; margin-left: 8%;">
+                                                    <lightning-formatted-rich-text class="" value={dt.Task_List__c} disabled></lightning-formatted-rich-text>
+                                                </div>
+                                            </div>
+                                            &nbsp;&nbsp;
+                                            <div class="tasklist">
+                                                <!--<lightning-textarea style="overflow:auto;"  value={dt.Status_Update__c} disabled></lightning-textarea>-->
+                                                <div class="slds-text-align_left" style="height: 25vh;overflow: auto; margin-left: 8%;">
+                                                    <lightning-formatted-rich-text class="" value={dt.Status_Update__c} disabled></lightning-formatted-rich-text>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </template>
+                            </div>
+                        </article>
+                    </template>
+                    <template if:false={TaskofEmployee}>
+                        <div style="margin: 3px; background: white"></div>
+                        <lightning-card style="height: 42vh;">
+                            <div class="Contentcardfortask">
+                                <h1 class="slds-align--absolute-center slds-text-heading_large">Oooop's!!!!</h1>
+                                <h1 class="slds-align--absolute-center slds-text-heading--small">There Is No Task List For This Date </h1>
+                            </div> 
+                        </lightning-card>
+                    </template>
+                </template>
+                <template if:true={loadingcardforEmp}>
+                    <div class = "spinner">
+                        <lightning-spinner alternative-text="LoadingCard"></lightning-spinner>
+                    </div>
+                </template>
+                
+            </template>
+        </lightning-card>
+        
+        <!-- if Hod And RM will Login then this code Will Work -->
+        <div style="margin: 3px;"></div>
+        <template if:false={showTaskListofEmp}>
+            <template if:true={showRmdataforHod}>
+                <lightning-card>
+                    <lightning-layout>
+                        <lightning-layout-item size="12">
+                            <div class="slds-input-has-icon slds-input-has-icon_right" style="padding-right: 10px; padding-left: 10px;">
+                                <div>
+                                    <label>Search Reporting Manager (RM)</label>
+                                </div>
+                                <div style="margin: 3px;">
+                                    <!-- <lightning-input type="search" class="RmClass" value={SelectValueForRm} onclick={RmOnClick} onchange={RmOnchangeListHandler}></lightning-input> -->
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right">
+                                          <div class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                            <lightning-icon size="x-small" icon-name="utility:search"></lightning-icon>
+                                          </div>
+                                          <lightning-input type="text" id="text-input-id-47" placeholder="Search RM…" value={SelectValueForRm} onclick={RmOnClick} onchange={RmOnchangeListHandler} style="border: none;" class="slds-p-around--xxx-small RmClass"></lightning-input>
+                                          <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" onclick={ClearRmData} title="Clear">
+                                            <div class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+                                                <lightning-icon size="x-small" icon-name="utility:close"></lightning-icon>
+                                            </div>
+                                            <span class="slds-assistive-text">Clear</span>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    <template if:true={ShowRmDropdown}>
+                                        <div id="listbox-id-4" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid dropdownclass" role="listbox">
+                                            <ul class="slds-listbox slds-listbox_vertical slds-m-around_medium" role="presentation">
+                                                <template for:each={showRMonlyforHOD} for:item="obj">
+                                                    <li key={obj.Id} id={obj.Id}  value={obj.Name} role="presentation" class="slds-listbox__item">
+                                                        <div data-id={obj.Id} data-name={obj.Name} data-title={obj.Name} class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option" onclick={handleSelectRecord} >
+                                                            <lightning-formatted-text value={obj.Name} ></lightning-formatted-text>
+                                                        </div>  
+                                                    </li> 
+                                                </template>
+                                            </ul>
+                                        </div>
+                                    </template>
+                                    
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <template if:true={RmdataTruebyHOD}>
+                        <lightning-layout>
+                            <lightning-layout-item size="12">
+                                <div class="slds-input-has-icon slds-input-has-icon_right" style="padding-right: 10px; padding-left: 10px;">
+                                    <div>
+                                        <label>Select Team Members Under RM</label>
+                                    </div>
+                                    <div style="margin: 3px;">
+                                        <!-- <lightning-input type="search" class="RmEmpClass" value={SelectTeamMemberunderRm} onclick={ClickedOnTemserch} onchange={EmpOfRmOnchange}></lightning-input> -->
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right">
+                                              <div class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                <lightning-icon size="x-small" icon-name="utility:search"></lightning-icon>
+                                              </div>
+                                              <lightning-input type="text" id="text-input-id-9" placeholder="Employees Under RM…" value={SelectTeamMemberunderRm} onclick={ClickedOnTemserch} onchange={EmpOfRmOnchange} style="border: none;" class="slds-p-around--xxx-small RmEmpClass"></lightning-input>
+                                              <button onclick={ClearEmpByRMData} class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear">
+                                                <div class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+                                                    <lightning-icon size="x-small" icon-name="utility:close"></lightning-icon>
+                                                </div>
+                                                <span class="slds-assistive-text">Clear</span>
+                                              </button>
+                                            </div>
+                                          </div>
+                                        <template if:true={TeamMemberDropDown}>
+                                            <div id="listbox-id-1" class="dropdownclass slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" role="listbox">
+                                                <ul class="slds-listbox slds-listbox_vertical slds-m-around_medium" role="presentation">
+                                                    <template for:each={ListofRMteam} for:item="obj">
+                                                        <li key={obj.Id} id={obj.Id}  value={obj.Name} role="presentation" class="slds-listbox__item">
+                                                            <div data-id={obj.Id} data-name={obj.Name} data-title={obj.Name} style="cursor: pointer;" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option" onclick={handleSelectRecordForRMEmp} >
+                                                                <lightning-formatted-text value={obj.Name} ></lightning-formatted-text>
+                                                            </div>  
+                                                        </li> 
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </template>
+                                        
+                                    </div>
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </template>
+                </lightning-card>
+            </template>
+            <template if:false={showRmdataforHod}>
+                <lightning-card>
+                    <lightning-layout>
+                        <lightning-layout-item size="12">
+                            <div class="slds-input-has-icon slds-input-has-icon_right">
+                                <div class="slds-m-left--small">
+                                    <label>Employees</label>
+                                </div>
+                                <div style="margin: 3px;">
+                                    <!-- <lightning-input type="search" class="EmployeeListClass" value={selectedEmpvalue} onclick={RmOnforEmployeeClick} onchange={EmployeeofRmOnchangeListHandler}></lightning-input> -->
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right">
+                                          <div class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                            <lightning-icon size="x-small" icon-name="utility:search"></lightning-icon>
+                                          </div>
+                                          <lightning-input type="text" id="text-input-id-46" placeholder="Search Employees…" value={selectedEmpvalue} onclick={RmOnforEmployeeClick} onchange={EmployeeofRmOnchangeListHandler} style="border: none;" class="slds-p-around--xxx-small EmployeeListClass"></lightning-input>
+                                          <button onclick={ClearEmpOFRM} class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear">
+                                            <div class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+                                                <lightning-icon size="x-small" icon-name="utility:close"></lightning-icon>
+                                            </div>
+                                            <span class="slds-assistive-text">Clear</span>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    <template if:true={ShowRmDropdown}>
+                                        <div id="listbox-id-6" class="dropdownclass slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                                            <ul class="slds-listbox slds-listbox_vertical slds-m-around_medium" role="presentation">
+                                                <template for:each={Rm_HOd_Login} for:item="obj">
+                                                    <li key={obj.Id} id={obj.Id}  value={obj.Name} role="presentation" class="slds-listbox__item">
+                                                        <div data-id={obj.Id} data-name={obj.Name} data-title={obj.Name} class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option" onclick={handleSelectRecordofEmp} >
+                                                            <lightning-formatted-text value={obj.Name} ></lightning-formatted-text>
+                                                        </div>  
+                                                    </li> 
+                                                </template>
+                                            </ul>
+                                        </div>
+                                    </template>
+                                    
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-card>
+            </template>
+            <div style="margin: 3px;"></div>
+            <template if:true={ShowTaskListHeader}>
+                <article class="slds-card" style="background-color: white;">
+                    <div class="flex-container slds-text-title_bold slds-m-bottom--xxx-small slds-m-top--xx-small" style="background-color: white; text-align: center;">
+                        <div class="date slds-p-left_small">Date</div>
+                        <div class="b-hour">Billing Hours</div>
+                        <div class="avail">Availability</div>
+                        <div class="tasklist">Task List</div>
+                        <div class="tasklist">Status Update</div>
+                    </div>
+                    <div style="margin: 3px; background: white"></div>
+                </article>
+            </template>
+            <template if:false={loadingcard}>
+                <template if:true={showTaskHistoryTeam}>
+                    <div style="margin: 3px; background: white"></div>
+                    <div class="cardMainDiv heightpolicy">
+                        <template for:each={data} for:item="dt">
+                            <div key={dt.id}>
+                                <div class="flex-container slds-box  slds-m-bottom--xx-small" style=" box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; background-color:white;" >
+                                    <div class="slds-align--absolute-center date">{dt.Date__c}</div>
+                                    <div class="slds-align--absolute-center b-hour">{dt.Billable_Hours__c}</div>
+                                    <div class="slds-align--absolute-center avail">{dt.Availability__c}%</div>
+                                    <div class="tasklist">
+                                        <!-- <lightning-textarea style="overflow:auto;" value={dt.Task_List__c} disabled></lightning-textarea> -->
+                                        <div class="slds-text-align_left" style="height: 25vh;overflow: auto; margin-left: 8%;">
+                                            <lightning-formatted-rich-text class="" value={dt.Task_List__c} disabled></lightning-formatted-rich-text>
+                                        </div>
+                                    </div>
+                                    &nbsp;&nbsp;
+                                    <div class="tasklist">
+                                        <!--<lightning-textarea style="overflow:auto;"  value={dt.Status_Update__c} disabled></lightning-textarea>-->
+                                        <div class="slds-text-align_left" style="height: 25vh;overflow: auto; margin-left: 8%;">
+                                            <lightning-formatted-rich-text class="" value={dt.Status_Update__c} disabled></lightning-formatted-rich-text>
+                                        </div>
+                                    </div>
+                                </div>   
+                            </div>
+                        </template>
+                    </div>
+                    
+                </template>
+                <template if:true={showCard}>
+                    <div style="margin: 3px; background: white"></div>
+                    <lightning-card style="height: 42vh;">
+                        <div class="Contentcardfortask">
+                            <h1 class="slds-align--absolute-center slds-text-heading_large">Oooop's!!!!</h1>
+                            <h1 class="slds-align--absolute-center slds-text-heading--small">There Is No Task List For This Date </h1>
+                        </div>
+                    </lightning-card>
+                </template>
+            </template>
+            <template if:true={loadingcard}>
+                <div class = "spinner">
+                    <lightning-spinner alternative-text="LoadingCard"></lightning-spinner>
+                </div>
+            </template>
+        </template>
+    </template>
+    <template if:true={loading}>
+        <div class = "spinner">
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </div>
+    </template>
+</template>

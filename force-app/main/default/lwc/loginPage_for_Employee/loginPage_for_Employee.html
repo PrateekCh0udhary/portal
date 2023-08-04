@@ -1,0 +1,283 @@
+<template>
+    <div onmouseleave={MouseLeave} onclick={Onclickscreen} onmouseover={onmouseoverfunction}>
+        <template if:true={areLoginPageVisible}>
+            <div>
+            <lightning-layout>
+                <lightning-layout-item size="6">
+                    <div style="background-color:#0263a9 ; height:100vh; overflow: hidden;">
+                    <img style="margin: 3px;" src={LoginImg}>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <div class="loginDiv">
+                        <div class=slds-col>
+
+                            <lightning-layout style="padding:10px;" class="slds-align--absolute-center">
+                                
+                                <lightning-layout-item >
+                                    <lightning-layout-item class="text-align-center" style="font-size: large; font-family: auto;">
+                                        <b>Sign in with your Employee Account !</b> 
+                                    </lightning-layout-item><br>
+                                    
+                                    <template if:true={errorCheck}>
+                                        <div class="error slds-var-p-around_x-small slds-var-p-top_small" role="alert">
+                                            <span>{errorMessage}</span>
+                                        </div>
+                                    </template>
+</lightning-layout-item>
+
+
+</lightning-layout>
+
+</div>
+
+<div class="slds-col slds-var-p-top_small">
+    <div class="slds-form-element">
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+            <lightning-icon class="input-icon" icon-name="utility:user" alternative-text="username" size="xx-small"></lightning-icon>
+            <input type="text" data-id="inputUsername" placeholder="Username" class="slds-input input-element" onchange={handleUserNameChange} required />
+        </div>
+    </div>
+</div>
+
+<div class="slds-col slds-var-p-top_small">
+    <div class="slds-form-element">
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+            <lightning-icon class="input-icon" icon-name="utility:lock" alternative-text="username" size="xx-small"></lightning-icon>
+            <input type="password" data-id="inputPassword" placeholder="Password" class="slds-input input-element" onchange={handlePasswordChange} required />
+        </div>
+    </div>
+</div>
+
+<div class="slds-col slds-var-p-top_small">
+    <button type="submit" class="login-button slds-button" onclick={handleLogin}>Log In</button>
+</div>
+</div>
+<div style="margin-top: 18vh; text-align: center;">
+    <div class="socialFooter slds-avatar">
+        <a href="https://www.linkedin.com/company/cloudanalogy/mycompany/verification/" class="socialLink" target="_blank">
+            <img src="/sfsites/c/resource/FooterIcons/FooterIcons/LinkedIn.svg" />
+        </a>
+    </div>&nbsp;
+    <div class="socialFooter slds-avatar">
+        <a href="https://www.facebook.com/cloudanalogy/" class="socialLink" target="_blank">
+            <img src="/sfsites/c/resource/FooterIcons/FooterIcons/Facebook.svg" />
+        </a>
+    </div>&nbsp;
+    <div class="socialFooter slds-avatar">
+        <a href="https://twitter.com/cloudanalogy" class="socialLink" target="_blank">
+            <img src="/sfsites/c/resource/FooterIcons/FooterIcons/Twitter.svg" />
+        </a>
+    </div>&nbsp;
+    <div class="socialFooter slds-avatar">
+        <a href="https://www.youtube.com/channel/UCf0FnuGyYNRbxJzqicyAFlA" class="socialLink" target="_blank">
+            <img src="/sfsites/c/resource/FooterIcons/FooterIcons/Youtube.svg" />
+        </a>
+    </div>
+</div>
+<!-- <div class="slds-col slds-var-p-top_small">
+        <a href="/Cydehustle/s/login/ForgotPassword" class="forgot-password-text">Forgot your password?</a>
+        <a href="/Cydehustle/s/login/SelfRegister" class="register-text">Register</a>
+    </div> -->
+<!-- <h1 class="text-align-center">
+                        <b class="main-heading">Welcome to CloudAnalogy</b>
+                    </h1>
+                <br/>
+                    <h1 class="text-align-center">
+                        <b style="margin-left: 20%; font-size: 192%;"> Employee Portal </b>
+                    </h1>
+                <br/>
+                    <p class="">
+                        <span class="sub-heading">Please login !</span>
+                    </p>
+
+                    <template if:true={errorCheck}>
+                        <div class="error slds-var-p-around_x-small slds-var-p-top_small" role="alert">
+                            <span>{errorMessage}</span>
+                        </div> 
+                    </template> -->
+</lightning-layout-item>
+</lightning-layout>
+
+<!-- <div class=slds-col>
+
+                    <div class="img-Class slds-m-around_medium">
+                        <img class="slds-p-right_x-large" src={CloudImg}>
+                    </div>
+
+                    <h1 class="text-align-center">
+                        <b class="main-heading">Welcome to CloudAnalogy</b>
+                    </h1>
+
+                    <h1 class="text-align-center">
+                        <b class="main-heading"> Employee Portal </b>
+                    </h1>
+
+                    <p class="slds-var-p-top_medium text-align-center">
+                        <span class="sub-heading">Please login !</span>
+                    </p>
+
+                    <template if:true={errorCheck}>
+                        <div class="error slds-var-p-around_x-small slds-var-p-top_small" role="alert">
+                            <span>{errorMessage}</span>
+                        </div>
+                    </template>
+
+                </div> 
+
+<div class="slds-col slds-var-p-top_small">
+    <div class="slds-form-element">
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+            <lightning-icon class="input-icon" icon-name="utility:user" alternative-text="username" size="xx-small"></lightning-icon>
+            <input type="text" data-id="inputUsername" placeholder="Username" class="slds-input input-element" onchange={handleUserNameChange} required />
+        </div>
+    </div>
+</div>
+
+<div class="slds-col slds-var-p-top_small">
+    <div class="slds-form-element">
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+            <lightning-icon class="input-icon" icon-name="utility:lock" alternative-text="username" size="xx-small"></lightning-icon>
+            <input type="password" data-id="inputPassword" placeholder="Password" class="slds-input input-element" onchange={handlePasswordChange} required />
+        </div>
+    </div>
+</div>
+
+<div class="slds-col slds-var-p-top_small">
+    <button type="submit" class="login-button slds-button" onclick={handleLogin}>Log In</button>
+</div>
+
+<div class="slds-col slds-var-p-top_small">
+    <a href="/Cydehustle/s/login/ForgotPassword" class="forgot-password-text">Forgot your password?</a>
+    <a href="/Cydehustle/s/login/SelfRegister" class="register-text">Register</a>
+</div>-->
+
+<template if:true={loading}>
+    <div class = "spinner">
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </div>
+</template>
+
+</div>
+</template>
+<template if:false={areLoginPageVisible}>
+            <div class="Adjustment slds-grid slds-p-horizontal--large slds-p-top--large">
+                <div class="slds-col_bump-right slds-p-bottom--small">
+                    <img style="max-width: 45%; height: auto;" class="" src={cloudfulImg}>
+                </div>
+                <div class="slds-m-top--small">
+                    <!-- <div class="iconBackgrounddiv at-container slds-p-around--xx-small " >
+                        <lightning-icon  onclick={openSetting}  onblur={onblurcloseSetting} class="at-item" icon-name="utility:settings" size="xx-small" alternative-text="settings!"
+                            title="settings">
+                        </lightning-icon>
+                    </div> -->
+                    <div class="iconBackgrounddiv at-container slds-p-around--xx-small " >
+                        <button  class="login-button slds-button slds-avatar" onclick={LogOutButton}>Logout</button>
+                        <!--<lightning-icon size="xx-small" onclick={LogOutButton} icon-name="utility:logout" class="slds-button__icon" alternative-text="logout" title="Logout"></lightning-icon> -->
+                    </div>
+                    <!-- <button type="submit" class="login-button slds-button slds-avatar"
+                        onclick={LogOutButton}>LOGOUT</button> -->
+                    <!-- <span class="Datecalsss slds-align--absolute-center">{printDate}</span> -->
+                </div>
+                <!-- <template if:true={openSettingchecker}>
+                    <div class="popover">
+                        <section aria-label="Dialog title" aria-describedby="popover-body-id" class="slds-popover slds-nubbin_top-right " role="dialog">
+                            <button onclick={closeSetting} class="slds-button slds-m-right--small slds-button_icon slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" title="Close dialog">
+                                <lightning-icon size="xx-small" icon-name="utility:close" class="slds-button__icon" alternative-text="Error!" title="Error"></lightning-icon>
+                            <span class="slds-assistive-text">Close dialog</span>
+                            </button>
+                            <div id="popover-body-id" class="slds-popover__body">
+                                <lightning-icon size="xx-small" icon-name="utility:logout" class="slds-button__icon" alternative-text="logout" title="Logout"></lightning-icon>
+                            </div>
+                            </section>
+                    </div>
+                  </template> -->
+</div>
+<div class="slds-grid slds-gutters pageclass" style="height: 100%; z-index: 0;">
+    <div class="slds-col  colourchange">
+        <span>
+                        <div>
+                            <lightning-vertical-navigation selected-item="reports_recent" class="div">
+                                <lightning-vertical-navigation-section style="font-size: larger;
+                                font-family: initial;">
+                                    <lightning-vertical-navigation-item-icon label="Dashboard" name="dashboard"
+                                        icon-name="utility:display_text" onclick={OnclickDashBoard}>
+                                    </lightning-vertical-navigation-item-icon>
+                                    <lightning-vertical-navigation-item-icon label="Personal Detail"
+                                        name="reports_usercreated" icon-name="utility:user"
+                                        onclick={OnclickpersonalDetail}>
+                                    </lightning-vertical-navigation-item-icon>
+                                    <lightning-vertical-navigation-item-icon label="Task History"
+                                        name="taskView" icon-name="utility:full_width_view"
+                                        onclick={onclicktaskView}>   
+                                    </lightning-vertical-navigation-item-icon>
+                                    <lightning-vertical-navigation-item-icon label="Certification and Specification"
+                                        name="CerAndSpes" icon-name="utility:education" onclick={OnclickcerAndspes}>
+                                    </lightning-vertical-navigation-item-icon>
+                                    <lightning-vertical-navigation-item-icon label="Team Structure" name="teamstructure"
+                                        icon-name="utility:groups" onclick={Onclickteamstr}>
+                                    </lightning-vertical-navigation-item-icon>
+                                    <lightning-vertical-navigation-item-icon label="Project Status" name="projectStatus"
+                                        icon-name="utility:kanban" onclick={Onclickprojectstatus}>
+                                    </lightning-vertical-navigation-item-icon>
+                                    <lightning-vertical-navigation-item-icon label="Goal" name="goal"
+                                        icon-name="utility:priority" onclick={Onclickgoal}>
+                                    </lightning-vertical-navigation-item-icon>
+                                    <lightning-vertical-navigation-item-icon label="Policy" name="policy"
+                                        icon-name="utility:locker_service_console" onclick={Onclickpolicy}>
+                                    </lightning-vertical-navigation-item-icon>
+                                </lightning-vertical-navigation-section>
+                            </lightning-vertical-navigation>
+                        </div>
+                    </span>
+    </div>
+    <div class="slds-col BackColor" style="height: 90vh; overflow: auto">
+        <template if:true={DashBoardisVisible}>
+                        <div style="height: 91vh; margin-bottom: 13px;" class="slds-accordion ">
+                            <c-dashboardof-employee employee-id={employeeId}></c-dashboardof-employee>
+                        </div>
+                        </template>
+        <template if:true={personaldetailisVisible}>
+                        <div style="height: 91vh; margin-top: 13px; margin-bottom: 13px;" class="slds-accordion">
+                            <c-personaldetailof-employee></c-personaldetailof-employee>
+                        </div>
+                        </template>
+        <template if:true={viewtasklistVisible}>
+            <div style="height: 91vh; overflow:auto; margin-top: 13px; margin-bottom: 13px;" class="slds-accordion " >
+                <c-view-taskand-status></c-view-taskand-status>
+            </div>
+                            
+                        </template>
+        <template if:true={cerAndspesisVisible}>
+                            <div style="height: 91vh; overflow:auto; margin-top: 13px; " class="slds-accordion ">
+                                <c-certification-of-employee employee-id={employeeId}></c-certification-of-employee>
+                            </div>
+                        </template>
+        <template if:true={teamStructureisVisible}>
+            <div style="height: 91vh; overflow:auto; margin-top: 13px; margin-bottom: 13px;" class="slds-accordion " >
+                <c-all-team></c-all-team>
+            </div>
+                            <!-- <c-team-structure></c-team-structure> -->
+                            
+                        </template>
+        <template if:true={projectStatusisVisible}>
+                            <div style="height: 91vh; overflow:auto; margin-top: 13px; margin-bottom: 13px;" class="slds-accordion ">
+                                <c-projectstatus></c-projectstatus>
+                            </div>
+                        </template>
+        <template if:true={GoalisVisible}>
+                            <div style="height: 91vh; overflow:auto; margin-top: 13px; margin-bottom: 13px;" class="slds-accordion ">
+                                Goal
+                            </div>
+                        </template>
+        <template if:true={policyisVisible}>
+            <div style="height: 91vh; overflow:auto; margin-top: 13px; margin-bottom: 13px;" class="slds-accordion ">
+                <c-policyfor-employee></c-policyfor-employee>
+            </div>
+                                
+                        </template>
+    </div>
+</div>
+</template>
+</div>
+</template>

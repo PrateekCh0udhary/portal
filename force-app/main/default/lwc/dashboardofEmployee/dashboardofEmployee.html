@@ -1,0 +1,433 @@
+<template>
+	<div class="BackColor">
+		<template if:false={loading}>
+			<!-- vikas singh -->
+			<div class="home_page_top_div shadow">
+				<div class="slds-grid slds-gutters">
+					<div class="slds-col home_page_second_div slds-p-around--x-large">
+						<div class="slds-p-around--large">
+							<!-- <lightning-icon icon-name="standard:people" alternative-text="People" title="Event"></lightning-icon> -->
+							<!--<span class="slds-avatar slds-avatar_circle">
+                   <abbr class="slds-avatar__initials slds-icon-standard-user" title="person name">VS</abbr>
+                 </span>-->
+						</div>
+						<div>
+							<h1 class="home_page_h1_tage" style="font-family:initial ;">Welcome Back! {EmployeeName}
+							</h1>
+							<p class="home_page_p_tage">{slogan}</p>
+						</div>
+					</div>
+					<!-- <div class="slds-col">
+           <div style="display: flex;
+           padding: 41px 1px 2px 175px;">
+               <div>
+                   <button class="button_one">Message</button>
+               </div>
+               <div>
+                   <button class="button_two">Setting</button>
+               </div>
+           </div>
+       </div> -->
+				</div>
+			</div>
+
+			<div class="topDiv">
+				<div class="mainCardDiv">
+					<template if:true={showTaskTable}>
+						<div class="slds-is-relative slds-p-around--small secondDiv">
+							<div class="slds-box slds-is-absolute outerDiv">
+								<h1 class="innerH1">Availability</h1>
+								<h1 class="innerh2h2">{AvilabilityOfEmp}%</h1>
+								<template if:false={updateAvil}>
+									<div style="display: flex">
+										<lightning-button-icon class="slds-m-left--small" icon-name="utility:edit"
+											variant="bare" alternative-text="edit" title="edit" onclick={togalClass}>
+										</lightning-button-icon>
+									</div>
+								</template>
+								<template if:true={updateAvil}>
+									<div style="display: flex">
+										<div class="lgc-bg">
+											<lightning-input type="number" class="InputClass" data-my-id="in1"
+												value={AvilabilityOfEmp} variant="label-hidden"></lightning-input>
+										</div>
+										<div class="">
+											<lightning-button-icon class="slds-m-left--small" icon-name="utility:check"
+												onclick={togalClass2} variant="bare" alternative-text="Add" title="Add">
+											</lightning-button-icon>
+										</div>
+									</div>
+								</template>
+							</div>
+						</div>
+					</template>
+					<template if:false={showTaskTable}>
+						<template if:true={innnerDataofCard}>
+							<div class="slds-is-relative slds-p-around--small secondDiv">
+								<div class="slds-box slds-is-absolute outerDiv ">
+									<h1 class="innerH1">Yesterday's Availability Of Team Members</h1>
+									<h1 class="innerh2">{AvilabilityOfEmp}%</h1>
+								</div>
+							</div>
+						</template>
+						<template if:false={innnerDataofCard}>
+							<div class="slds-is-relative slds-p-around--small secondDiv">
+								<div class="slds-box slds-is-absolute outerDiv">
+									<h1 class="slds-align--absolute-center slds-coordinates__title">OOOp's There Is No
+										Availability For Yesterday</h1>
+								</div>
+							</div>
+						</template>
+					</template>
+				</div>
+				<div class="mainCardDiv">
+					<template if:true={showTaskTable}>
+						<div class="slds-is-relative slds-p-around--small secondDiv">
+							<div class="slds-box slds-is-absolute outerDiv ">
+								<h1 class="innerH1">This Month Billable Hour</h1>
+								<h1 class="innerh2">{TotalBillable}</h1>
+								<p class="innerp">Hours</p>
+							</div>
+						</div>
+					</template>
+					<template if:false={showTaskTable}>
+						<template if:true={innnerDataofCardBH}>
+							<div class="slds-is-relative slds-p-around--small secondDiv">
+								<div class="slds-box slds-is-absolute outerDiv ">
+									<h1 class="innerH1">Billable Hours Of Team For Yesterday</h1>
+									<h1 class="innerh2">{TotalBillable}</h1>
+									<p class="innerp">Hours</p>
+								</div>
+							</div>
+						</template>
+						<template if:false={innnerDataofCardBH}>
+							<div class="slds-is-relative slds-p-around--small secondDiv">
+								<div class="slds-box slds-is-absolute outerDiv">
+									<h1 class="slds-align--absolute-center slds-coordinates__title">OOOp's There Is No
+										Billable For Yesterday</h1>
+								</div>
+							</div>
+						</template>
+					</template>
+				</div>
+				<div class="mainCardDiv">
+					<template if:true={showTaskTable}>
+						<div class="slds-is-relative slds-p-around--small secondDiv">
+							<div class="slds-box slds-is-absolute outerDiv">
+								<h1 class="innerH1">Designation And Experience</h1>
+								<h1
+									class="slds-text-align--center Employdes slds-color-picker__summary-button slds-align--absolute-center">
+									{cardDesig}</h1>
+								<p class="slds-text-align--center ExperienceEmp">{Experience}</p>
+								<p class="innerp2">
+								</p>
+							</div>
+						</div>
+					</template>
+					<template if:false={showTaskTable}>
+						<div class="slds-is-relative slds-p-around--small secondDiv">
+							<div class="slds-box slds-is-absolute outerDiv ">
+								<h1 class="innerH1">This Month Billable Hours Of Team</h1>
+								<h1 class="innerh2">{ThisMonthbillableHr}</h1>
+								<p class="innerp">Hours</p>
+							</div>
+						</div>
+					</template>
+				</div>
+				<div class="mainCardDiv">
+					<div class="slds-is-relative slds-p-around--small secondDiv">
+						<div class="slds-box slds-is-absolute outerDiv">
+							<template if:true={ShowBirthday}>
+								<div class="slds-size_3-of-4">
+									<span style="height: 30vh">
+               <div
+                 class="box_size slds-box slds-box_x-small slds-text-align_center slds-app-launcher__tile-body slds-text-heading_label birthdayCard">
+                 Today's Birthday
+                 <lightning-carousel disable-auto-scroll>
+                   <template 
+                     for:each={birthdayEmployee}
+                     for:item="birth"
+                     for:index="Index">
+                       <lightning-carousel-image class="slds-popover"
+                       key={birth.Name}
+                       header={birth.Name}
+                       description={birth.description}>
+                       </lightning-carousel-image>
+                   </template>
+           </lightning-carousel>
+       </div>
+       </span>
+								</div>
+							</template>
+							<template if:false={ShowBirthday}>
+								<div class="slds-size_3-of-4">
+									<span style="height: 30vh">
+     <div
+       class="box_size slds-box slds-box_x-small slds-text-align_center slds-app-launcher__tile-body slds-text-heading_label birthdayCard">
+       Today's Birthday
+       <lightning-carousel disable-auto-scroll>
+         <div class="slds-popover">
+           <lightning-carousel-image
+             header="Huh!!!" 
+             description= "No Birthday">
+           </lightning-carousel-image>
+         </div>
+		</lightning-carousel>
+	</div>
+	</span>
+								</div>
+							</template>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+			</br>
+			</br>
+			<div style="height: 100%;" class="bg">
+				<div class="slds-gutters pageclass">
+					<div class="height-class slds-m-top--large">
+						<div class="slds-box_x-small slds-p-around--large slds-col home_page_today_div ">
+							<h1 class="home_page_h1_tage" style="font-family:initial ;">Today's Update</h1>
+						</div>
+						<lightning-layout>
+							<lightning-layout-item size="3" padding="none" style="background:lightgray">
+								<lightning-tabset>
+									<lightning-tab label="Task List">
+										<div class="slds-box_xx-small">
+											<h2 class="heading">Daily Task-list</h2>
+											<lightning-input-rich-text class="textAreaClass " value={preTaskValue}
+												onchange={TaskList} placeholder="Daily Task List...">
+											</lightning-input-rich-text>
+										</div>
+									</lightning-tab>
+									<lightning-tab label="Status Update">
+										<div class="slds-box_xx-small">
+											<h2 class="heading">Status Update</h2>
+											<lightning-input-rich-text class="textAreaClass " value={preStatusValue}
+												onchange={StatusUpdate} placeholder="Status Update.....">
+											</lightning-input-rich-text>
+										</div>
+									</lightning-tab>
+								</lightning-tabset>
+
+							</lightning-layout-item>
+							<lightning-layout-item size="9" padding="none">
+								<div class="slds-box_x-small">
+									<lightning-input type="date" class="dateclass " value={PreDateValue}
+										onchange={DateofTask} disabled>
+									</lightning-input>
+
+									<!-------------------------------------------------Table------------>
+
+<table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer" role="grid">
+            <thead>
+            <tr>
+                <th scope="col" height="30" style="width: 15rem">Task</th>
+                <th scope="col" height="20" style="width: 10rem">Project</th>
+                <th scope="col" height="10" style="width: 3rem">Bilable Hour</th>
+				<th scope="col" height="10" style="width: 3rem">Actual Hour</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={listOfAccounts} for:item="rec">
+                <tr key={rec} class="slds-hint-parent">
+                    <td style="font-weight: bold">
+                        <lightning-formatted-number value={rec.index}></lightning-formatted-number>.
+                    </td>
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Name" value={rec.Name} onchange={handleInputChange}></lightning-input>
+                    </td>
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Website" value={rec.Website} onchange={handleInputChange}></lightning-input>
+                    </td>
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Phone" value={rec.Phone} onchange={handleInputChange}></lightning-input>
+                    </td>
+                    <td>
+                        <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" title="Remove" name={rec.index} onclick={removeRow}></lightning-button-icon>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+        <div class="slds-p-left_small slds-p-vertical_small">
+            <lightning-button class="slds-p-right_small" variant="destructive" label="delete all rows" title="delete all rows" icon-name="utility:recycle_bin_full" onclick={removeAllRows}></lightning-button>
+            <lightning-button variant="neutral" label="add additional row" title="add additional row" icon-name="utility:add" onclick={addNewRow}></lightning-button>
+        </div>
+									<!--------------->
+								</div>
+
+							</lightning-layout-item>
+							<lightning-layout-item size="3" padding="none">
+								<c-clock></c-clock>
+							</lightning-layout-item>
+						</lightning-layout>
+						</br>
+						</br>
+						<lightning-tabset>
+							<lightning-tab label="Task List">
+								<lightning-layout>
+
+
+
+								</lightning-layout>
+
+							</lightning-tab>
+							<template if:false={showTabTwo}>
+								<lightning-tab label="Status Update">
+									<lightning-layout>
+										<lightning-layout-item size="2" padding="none">
+											<div class="slds-box_x-small">
+												<h2 class="heading">Billable Hour</h2>
+												<lightning-input class="billableclass billClass" type="number"
+													value={preBillablevalue} onchange={billablehours}
+													placeholder="0 to 12">
+												</lightning-input>
+											</div>
+										</lightning-layout-item>
+										<lightning-layout-item size="2" padding="none">
+											<div class="slds-box_x-small">
+												<h2 class="heading">Actual Hour</h2>
+												<lightning-input class="billableclass actualbillClass" type="number"
+													value={preActualvalue} onchange={actualhours} placeholder="0 to 12">
+												</lightning-input>
+											</div>
+										</lightning-layout-item>
+									</lightning-layout>
+								</lightning-tab>
+							</template>
+						</lightning-tabset>
+					</div>
+				</div>
+			</div>
+
+			<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+			<!-- vikas singh -->
+			<div style="height: 100%;" class="bg">
+				<div class="slds-gutters pageclass">
+					&nbsp; &nbsp;
+					<div class="height-class slds-m-top--large">
+						<template if:true={showTaskTable}>
+							<template if:true={showTaskDataUpdated}>
+								<div class=" ">
+									<lightning-layout>
+										<lightning-layout-item size="2" padding="none">
+											<div class="slds-box_x-small">
+												<h2 class="heading">Billable Hour</h2>
+												<lightning-input class="billableclass billClass" type="number"
+													value={preBillablevalue} onchange={billablehours}
+													placeholder="0 to 12"></lightning-input>
+											</div>
+										</lightning-layout-item>
+										<lightning-layout-item size="2" padding="none">
+											<div class="slds-box_x-small">
+												<h2 class="heading">Actual Hour</h2>
+												<lightning-input class="billableclass actualbillClass" type="number"
+													value={preActualvalue} onchange={actualhours} placeholder="0 to 12">
+												</lightning-input>
+											</div>
+										</lightning-layout-item>
+
+									</lightning-layout>
+									<!--Actual Hour segment-->
+									<lightning-layout>
+										<lightning-layout-item size="2">
+											<div class="slds-box_x-small">
+												<h2 class="heading">Date</h2>
+												<lightning-input type="date" class="dateclass " value={PreDateValue}
+													onchange={DateofTask} disabled></lightning-input>
+											</div>
+										</lightning-layout-item>
+										<!--lightning-layout-item size="6">
+                    <div class="slds-box_x-small">
+                      <h2 class="heading">Project</h2>
+                      <lightning-input type="date" class="dateclass " value={PreDateValue} onchange={DateofTask} disabled></lightning-input>
+                    </div>
+                  </lightning-layout-item-->
+									</lightning-layout>
+									<lightning-layout>
+										<lightning-layout-item size="6" padding="none">
+											<div class="slds-box_x-small">
+												<h2 class="heading">Daily Task-list</h2>
+												<lightning-input-rich-text class="textAreaClass " value={preTaskValue}
+													onchange={TaskList} placeholder="Daily Task List...">
+												</lightning-input-rich-text>
+											</div>
+										</lightning-layout-item>
+										<lightning-layout-item size="6">
+											<div class="slds-box_x-small">
+												<h2 class="heading">Status Update</h2>
+												<lightning-input-rich-text class="textAreaClass " value={preStatusValue}
+													onchange={StatusUpdate} placeholder="Status Update.....">
+												</lightning-input-rich-text>
+											</div>
+										</lightning-layout-item>
+									</lightning-layout>
+
+
+									<!-- <div class="slds-size_6-of-12 slds-p-horizontal_xx-small">
+                       <h2 class="heading">Billable Hour</h2>
+                       <lightning-input class="billableclass billClass" type="number" value={preBillablevalue} onchange={billablehours} placeholder="0 to 8"></lightning-input>
+                       &nbsp;
+                       <h2 class="heading">Daily Task-list</h2>
+                       <lightning-input-rich-text class="textAreaClass " value={preTaskValue} onchange={TaskList} placeholder="Daily Task List..."></lightning-input-rich-text>
+                   </div>
+                   <div class="slds-size_6-of-12 slds-p-horizontal_xx-small">
+                       <h2 class="heading">Date</h2>
+                       <lightning-input type="date" class="dateclass " value={PreDateValue} onchange={DateofTask} disabled></lightning-input>
+                       &nbsp;
+                       <h2 class="heading">Status Update</h2>
+                       <lightning-input-rich-text class="textAreaClass " value={preStatusValue} onchange={StatusUpdate} placeholder="Status Update....."></lightning-input-rich-text>
+                   </div> -->
+								</div>
+							</template>
+							<template if:false={showTaskDataUpdated}>
+								<div class="spinner">
+									<lightning-spinner alternative-text="Loading1"></lightning-spinner>
+								</div>
+							</template>
+							<div class="slds-var-p-top_small" style="padding: 5px;">
+								<button type="button" class="login-button slds-button" onclick={taskListUpdate}>
+           Add Task
+         </button>
+							</div>
+						</template> &nbsp; &nbsp;
+						<template if:false={showTaskTable}>
+							<div class="home_page_top_div" style="background-color: white; border-radius:10px;">
+								<h1 class="slds-accordion__section slds-align_absolute-center headerStyle">Team members
+									having availability more than 30% for this Month</h1>
+							</div>
+							<div style=" background-color:cornflowerblue; height: auto; max-height: 214px;  width:auto;"
+								class="slds-m-top_small slds-scrollable_y">
+								<lightning-datatable key-field="id" data={employeeDatatableList} show-row-number-column
+									row-number-offset={rowOffset} hide-checkbox-column columns={columns}
+									style="    border-radius: 10px;">
+								</lightning-datatable>
+							</div>
+							&nbsp;
+							<template if:true={ShowProjectWillingEmp}>
+								<div class="home_page_top_div" style="background-color: white; border-radius:10px;">
+									<h1 class="slds-accordion__section slds-align_absolute-center headerStyle">Team
+										members willing for projects</h1>
+								</div>
+								<div style=" background-color:cornflowerblue; height: auto; max-height: 214px;  width:auto;"
+									class="slds-m-top_small slds-scrollable_y">
+									<lightning-datatable key-field="id" data={ProjectWillingEmp} show-row-number-column
+										row-number-offset={rowOffset} hide-checkbox-column columns={colForEmp}>
+									</lightning-datatable>
+								</div>
+							</template>
+						</template>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template if:true={loading}>
+			<div class="spinner">
+				<lightning-spinner alternative-text="Loading"></lightning-spinner>
+			</div>
+		</template>
+	</div>
+</template>
