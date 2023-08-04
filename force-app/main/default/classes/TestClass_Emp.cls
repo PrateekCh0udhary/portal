@@ -6,7 +6,7 @@ public class TestClass_Emp {
         try{
             
             Employee__c Emp1OBJ = New Employee__c();
-            Emp1OBJ.Name = 'Employee1';
+            Emp1OBJ.Name = 'Employee12';
             Emp1OBJ.Role__c = 'HOD';
             Emp1OBJ.designation__c = 'HOD';
             Emp1OBJ.Email__c = 'Emp1@gmail.com';
